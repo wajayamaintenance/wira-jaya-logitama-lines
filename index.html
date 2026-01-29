@@ -23,7 +23,7 @@
             position: relative;
             background-color: var(--primary-blue);
             overflow: hidden;
-            min-height: 400px;
+            min-height: 450px;
             display: flex;
             align-items: center;
         }
@@ -34,12 +34,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Menggunakan gambar baru dengan opasitas 50% */
-            background-image: linear-gradient(rgba(0, 43, 91, 0.5), rgba(0, 43, 91, 0.6)), 
+            background-image: linear-gradient(rgba(0, 43, 91, 0.6), rgba(0, 43, 91, 0.7)), 
                               url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdxWkb0aZ86dTSM4H68PBQD9Lw92KESI6g6w&s');
             background-size: cover;
             background-position: center;
-            opacity: 0.5;
+            opacity: 0.6;
             z-index: 1;
         }
 
@@ -110,6 +109,11 @@
             width: auto;
             object-fit: contain;
         }
+
+        /* Penyesuaian khusus untuk posisi tengah */
+        .controls-container {
+            margin-top: -120px; /* Menarik container ke atas area hero */
+        }
     </style>
 </head>
 <body class="bg-[#F8FAFC] text-gray-900">
@@ -128,7 +132,7 @@
             </div>
             <div class="hidden md:block">
                 <a href="https://www.wjl-line.com" target="_blank" class="text-xs font-bold px-4 py-2 border border-white/20 rounded-lg hover:bg-white/10 transition-all">
-                    <i class="fas fa-globe mr-2"></i>Official Website PT Wira Jaya Logitama Lines 
+                    <i class="fas fa-globe mr-2"></i>Official Website PT Wira Jaya Logitama Lines
                 </a>
             </div>
         </div>
@@ -137,79 +141,97 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-bg-overlay"></div>
-        <div class="hero-content flex items-center justify-center text-center text-white px-4">
+        <div class="hero-content flex flex-col items-center justify-center text-center text-white px-4">
             <div class="max-w-4xl">
                 <div class="inline-flex items-center gap-2 px-5 py-2 bg-accent-gold/20 border border-accent/40 text-accent rounded-full text-xs font-black mb-8 uppercase tracking-widest shadow-lg backdrop-blur-md">
                     <span class="flex h-2 w-2 rounded-full bg-accent-gold animate-ping"></span>
                     Maintenance Record Portal
                 </div>
-                <div>
-                    <span class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tighter drop-shadow-xl">PT Wira Jaya Logitama Lines</span>
-                </div>
-                <br>
-                <h1 class="font-extrabold text-xl md:text-2xl block leading-tight text-accent">Fleet Maintenance & Certification</h1>
-                <p class="text-blue-50 text-base md:text-lg max-w-2xl mx-auto opacity-95 leading-relaxed font-medium">
-                    Akses digital terpusat untuk sertifikasi sistem keselamatan dan dokumentasi teknis armada PT Wira Jaya Logitama Lines.
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tighter drop-shadow-xl">PT Wira Jaya Logitama Lines</h2>
+                <p class="text-blue-50 text-base md:text-lg max-w-2xl mx-auto opacity-95 leading-relaxed font-medium mb-12">
+                    Akses digital terpusat untuk sertifikasi sistem keselamatan dan dokumentasi teknis armada.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="py-12 container mx-auto px-4 -mt-20 relative z-10">
-        <div class="max-w-6xl mx-auto bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 border border-gray-100">
-            
-            <!-- Filter Section -->
-            <div class="mb-12 border-b border-gray-100 pb-12">
-                <div class="max-w-md mx-auto text-center">
-                    <label class="block text-primary-blue font-extrabold uppercase tracking-widest text-[10px] mb-4">Pilih Armada Kapal WJL</label>
-                    <select id="shipSelector" onchange="updateShipPortal()" class="select-custom w-full p-4 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-primary-blue transition-all font-bold text-primary-blue text-md">
+    <!-- Selection Controls (Diposisikan di tengah) -->
+    <div class="container mx-auto px-4 relative z-20 controls-container">
+        <div class="max-w-3xl mx-auto bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-10 border border-gray-100">
+            <div class="grid md:grid-cols-2 gap-8 items-end">
+                <!-- Ship Selector -->
+                <div class="flex flex-col">
+                    <label class="text-primary-blue font-extrabold uppercase tracking-widest text-[11px] mb-3 ml-1 flex items-center gap-2">
+                        <i class="fas fa-ship text-accent"></i> Pilih Armada Kapal
+                    </label>
+                    <select id="shipSelector" onchange="handleShipChange()" class="select-custom w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:outline-none focus:border-blue-500 transition-all font-bold text-primary-blue text-md">
                         <option value="">-- Pilih Nama Kapal --</option>
                     </select>
                 </div>
+                <!-- Year Selector -->
+                <div id="yearContainer" class="flex flex-col opacity-40 pointer-events-none transition-smooth">
+                    <label class="text-primary-blue font-extrabold uppercase tracking-widest text-[11px] mb-3 ml-1 flex items-center gap-2">
+                        <i class="fas fa-calendar-alt text-accent"></i> Pilih Tahun Service
+                    </label>
+                    <select id="yearSelector" onchange="updateShipPortal()" class="select-custom w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:outline-none focus:border-blue-500 transition-all font-bold text-primary-blue text-md">
+                        <option value="">Pilih Kapal Terlebih Dahulu</option>
+                    </select>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Portal Display -->
-            <div id="portalDisplay" class="hidden transition-smooth opacity-0 translate-y-8">
-                <div class="grid lg:grid-cols-4 gap-10">
-                    <!-- Ship Profile -->
-                    <div class="lg:col-span-1">
-                        <div class="bg-gray-50 rounded-[2rem] overflow-hidden border border-gray-100 sticky top-28">
-                            <div class="aspect-video bg-gray-200 overflow-hidden">
-                                <img id="shipImage" src="" alt="Kapal" class="w-full h-full object-cover">
+    <!-- Main Content (Portal Display) -->
+    <main class="py-12 container mx-auto px-4">
+        
+        <!-- Portal Display Area -->
+        <div id="portalDisplay" class="hidden transition-smooth opacity-0 translate-y-8 max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-4 gap-10">
+                <!-- Ship Profile Card -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-[2rem] overflow-hidden border border-gray-100 shadow-xl sticky top-28">
+                        <div class="aspect-[4/3] bg-gray-200 overflow-hidden relative">
+                            <img id="shipImage" src="" alt="Kapal" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <div class="p-6 text-center">
+                            <p id="shipType" class="text-accent text-[9px] font-black uppercase tracking-[0.2em] mb-1">Tipe Kapal</p>
+                            <h3 id="shipNameDisplay" class="text-xl font-extrabold text-primary-blue uppercase leading-tight mb-3">Nama Kapal</h3>
+                            <div id="displayYear" class="text-[11px] font-black text-blue-600 mb-5 bg-blue-50 inline-block px-4 py-1.5 rounded-full uppercase tracking-tighter">
+                                Tahun 2025
                             </div>
-                            <div class="p-6 text-center">
-                                <p id="shipType" class="text-accent text-[9px] font-black uppercase tracking-[0.2em] mb-1">Tipe Kapal</p>
-                                <h3 id="shipNameDisplay" class="text-xl font-extrabold text-primary-blue uppercase leading-tight mb-4">Nama Kapal</h3>
-                                
-                                <div class="pt-4 border-t border-gray-200">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-green-50 text-green-600 text-[10px] font-bold">
-                                        <i class="fas fa-check-circle mr-1"></i> DATA TERVERIFIKASI
-                                    </span>
-                                </div>
-                            </div>
+                            
+                            <div class="pt-5 border-t border-gray-100">
+                                <span class="inline-flex items-center px-4 py-2 rounded-xl bg-green-50 text-green-600 text-[10px] font-bold">
+                                    <i class="fas fa-check-circle mr-2"></i> DATA TERVERIFIKASI
+                                </span>
+                            </div>  
                         </div>
                     </div>
+                </div>
 
-                    <!-- Records Grid -->
-                    <div class="lg:col-span-3">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-                            <h4 class="text-xs font-black text-primary-blue uppercase tracking-widest flex items-center gap-2">
-                                <i class="fas fa-clipboard-check text-accent text-lg"></i> Maintenance Documents
+                <!-- Records Grid -->
+                <div class="lg:col-span-3">
+                    <div class="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm">
+                        <div class="flex items-center justify-between mb-8">
+                            <h4 class="text-xs font-black text-primary-blue uppercase tracking-[0.2em] flex items-center gap-3">
+                                <span class="w-8 h-1 bg-accent rounded-full"></span>
+                                Maintenance Documents
                             </h4>
                         </div>
-                        <div id="certificateGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+                        <div id="certificateGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Empty State -->
-            <div id="emptyState" class="text-center py-20 transition-smooth">
-                <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-anchor text-3xl text-blue-200"></i>
-                </div>
-                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest">Silakan pilih armada kapal untuk melihat laporan</h3>
+        <!-- Empty State -->
+        <div id="emptyState" class="text-center py-20 transition-smooth max-w-xl mx-auto">
+            <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+                <i class="fas fa-anchor text-4xl text-blue-200"></i>
             </div>
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-[0.3em]">Menunggu pemilihan armada kapal</h3>
+            <p class="text-gray-400 text-xs mt-2">Silakan pilih kapal dan tahun untuk melihat catatan pemeliharaan.</p>
         </div>
     </main>
 
@@ -226,7 +248,9 @@
             { category: 'CO2 System', cert: '#', doc: '#', icon: 'fas fa-wind' },
             { category: 'EEBD', cert: '#', doc: '#', icon: 'fas fa-mask' },
             { category: 'APAR', cert: '#', doc: '#', icon: 'fas fa-fire-extinguisher' },
-            { category: 'HRU', cert: '#', doc: '#', icon: 'fas fa-anchor' }
+            { category: 'HRU', cert: '#', doc: '#', icon: 'fas fa-anchor' },
+            { category: 'ILR', cert: '#', doc: '#', icon: 'fas fa-life-ring' },
+            { category: 'Sekoci', cert: '#', doc: '#', icon: 'fas fa-ship' }
         ];
 
         const fleetData = {
@@ -234,40 +258,44 @@
                 name: 'KMP WIRA SAMAERI',
                 type: 'Ro-Ro Passenger Ship',
                 image: 'https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/236/2024/05/21/kmp-wira-3385688903.jpg',
-                certificates: [
-                    { category: 'CO2 System', cert: 'https://drive.google.com/file/d/1TO30irOuo0Vn-ngoss4Li19m5yPqCjXc/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1JLkqSkXWsPh073m9-TBo5VjPIpHr2HGg?usp=drive_link', icon: 'fas fa-wind' },
-                    { category: 'EEBD', cert: 'https://drive.google.com/file/d/18O0nTGyl7Q0C2t3gyjuNLipiMG3II6aG/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1oY5Wf2nH_Lw2UhE8ICgRZKhZtgYjsnDT?usp=drive_link', icon: 'fas fa-mask' },
-                    { category: 'Fire Extinguisher (APAR)', cert: 'https://drive.google.com/file/d/10gJ_H0rLjkRi1K-tj4P7GpkGXkmHFNSq/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ZBvif2wmTz0hPtod2KDKR2RtAw1RGths?usp=drive_link', icon: 'fas fa-fire-extinguisher' },
-                    { category: 'HRU', cert: 'https://drive.google.com/file/d/1VXAODbaryKjLH9J03GCTejmDnXpiPIE-/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1241N1tw9l8h5DeUG5vs0YUNvcUU21qZ_?usp=drive_link', icon: 'fas fa-anchor' },
-                    { 
-                        category: 'ILR', icon: 'fas fa-life-ring', isMultiItem: true,
-                        items: [
-                            { id: '0692', cert: 'https://drive.google.com/file/d/1qaXOZ6q6vK6OIw82GeN3APpnSZ9yiDJn/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1xI3jgnQ-Ve1BzTdwhG3JlRSmQ447DD_L?usp=drive_link' },
-                            { id: '1167', cert: 'https://drive.google.com/file/d/1hyiCP00vT6vG7UHf_uQLhXZLgk-5tumr/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1xI3jgnQ-Ve1BzTdwhG3JlRSmQ447DD_L?usp=drive_link' },
-                            { id: '1168', cert: 'https://drive.google.com/file/d/1pQS4V3q9iV_4ai5YnuYtLMX1IktZP3z3/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1z_TCx_58CuISo-d9ZlIybguaBaZDmg5r?usp=drive_link' },
-                            { id: '04079', cert: 'https://drive.google.com/file/d/1E89GoNpfOwubIxofjF1_U5bb7d4Zx4z5/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/13HWEVFdTbbvZ-ASAXtRIC9k7xf9hGDtn?usp=drive_link' },
-                            { id: '04081', cert: 'https://drive.google.com/file/d/1T4jWgEl6wmpOV-R21YcSe_VeQrv6ZA70/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1HVyMdfTKx0NLAZZODM0MoZaxfIibtlH1?usp=drive_link' },
-                            { id: '04083', cert: 'https://drive.google.com/file/d/1KFGm6JYqHgwXknbk_OikdRYANzGb73dg/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1V02OJQE6Co_Jews4HoFosCGpWzHj9wdV?usp=drive_link' },
-                            { id: '04084', cert: 'https://drive.google.com/file/d/19sSmwT7h3fEWnT2GKQoj9xqw8RcjWU7R/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1VRqBoBjlqzqwIjVVnC6r0Q07DtOauesu?usp=drive_link' },
-                            { id: '04115', cert: 'https://drive.google.com/file/d/12RgVFmrs9ltG8UoZYUEXAgZdD3qp000H/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1YhVGmwYwgofeaWQ2Knlav4GNxcnLTfFv?usp=drive_link' },
-                            { id: 'Pemasangan Liferaft 1', doc: 'https://drive.google.com/drive/folders/16pY31SoKt-_J5H5H3TXn3NKEWQopcMFl?usp=drive_link' },
-                            { id: 'Pemasangan Liferaft 2', doc: 'https://drive.google.com/drive/folders/1rya6T2xc9lb7va-f662Nap7icorigA9U?usp=drive_link' }
-                        ] 
-                    },
-                    { category: 'Rescue Boat', cert: 'https://drive.google.com/file/d/1g7rfulhgJsxN6CKmd2EN0_9FLzElNcEt/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1O6j6VRDj1vc57zh4rH2bD_nye4HDv0l7?usp=drive_link', icon: 'fas fa-ship' }
-                ]
+                history: {
+                    '2025': [
+                        { category: 'CO2 System', cert: 'https://drive.google.com/file/d/1TO30irOuo0Vn-ngoss4Li19m5yPqCjXc/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1JLkqSkXWsPh073m9-TBo5VjPIpHr2HGg?usp=drive_link', icon: 'fas fa-wind' },
+                        { category: 'EEBD', cert: 'https://drive.google.com/file/d/18O0nTGyl7Q0C2t3gyjuNLipiMG3II6aG/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1oY5Wf2nH_Lw2UhE8ICgRZKhZtgYjsnDT?usp=drive_link', icon: 'fas fa-mask' },
+                        { category: 'Fire Extinguisher (APAR)', cert: 'https://drive.google.com/file/d/10gJ_H0rLjkRi1K-tj4P7GpkGXkmHFNSq/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ZBvif2wmTz0hPtod2KDKR2RtAw1RGths?usp=drive_link', icon: 'fas fa-fire-extinguisher' },
+                        { category: 'HRU', cert: 'https://drive.google.com/file/d/1VXAODbaryKjLH9J03GCTejmDnXpiPIE-/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1241N1tw9l8h5DeUG5vs0YUNvcUU21qZ_?usp=drive_link', icon: 'fas fa-anchor' },
+                        { 
+                            category: 'ILR', icon: 'fas fa-life-ring', isMultiItem: true,
+                            items: [
+                                { id: '0692', cert: 'https://drive.google.com/file/d/1qaXOZ6q6vK6OIw82GeN3APpnSZ9yiDJn/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1xI3jgnQ-Ve1BzTdwhG3JlRSmQ447DD_L?usp=drive_link' },
+                                { id: '1167', cert: 'https://drive.google.com/file/d/1hyiCP00vT6vG7UHf_uQLhXZLgk-5tumr/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1xI3jgnQ-Ve1BzTdwhG3JlRSmQ447DD_L?usp=drive_link' },
+                                { id: '1168', cert: 'https://drive.google.com/file/d/1pQS4V3q9iV_4ai5YnuYtLMX1IktZP3z3/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1z_TCx_58CuISo-d9ZlIybguaBaZDmg5r?usp=drive_link' },
+                                { id: '04079', cert: 'https://drive.google.com/file/d/1E89GoNpfOwubIxofjF1_U5bb7d4Zx4z5/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/13HWEVFdTbbvZ-ASAXtRIC9k7xf9hGDtn?usp=drive_link' },
+                                { id: '04081', cert: 'https://drive.google.com/file/d/1T4jWgEl6wmpOV-R21YcSe_VeQrv6ZA70/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1HVyMdfTKx0NLAZZODM0MoZaxfIibtlH1?usp=drive_link' },
+                                { id: '04083', cert: 'https://drive.google.com/file/d/1KFGm6JYqHgwXknbk_OikdRYANzGb73dg/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1V02OJQE6Co_Jews4HoFosCGpWzHj9wdV?usp=drive_link' },
+                                { id: '04084', cert: 'https://drive.google.com/file/d/19sSmwT7h3fEWnT2GKQoj9xqw8RcjWU7R/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1VRqBoBjlqzqwIjVVnC6r0Q07DtOauesu?usp=drive_link' },
+                                { id: '04115', cert: 'https://drive.google.com/file/d/12RgVFmrs9ltG8UoZYUEXAgZdD3qp000H/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1YhVGmwYwgofeaWQ2Knlav4GNxcnLTfFv?usp=drive_link' },
+                                { id: 'Pemasangan Liferaft 1', doc: 'https://drive.google.com/drive/folders/16pY31SoKt-_J5H5H3TXn3NKEWQopcMFl?usp=drive_link' },
+                                { id: 'Pemasangan Liferaft 2', doc: 'https://drive.google.com/drive/folders/1rya6T2xc9lb7va-f662Nap7icorigA9U?usp=drive_link' }
+                            ] 
+                        },
+                        { category: 'Rescue Boat', cert: 'https://drive.google.com/file/d/1g7rfulhgJsxN6CKmd2EN0_9FLzElNcEt/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1O6j6VRDj1vc57zh4rH2bD_nye4HDv0l7?usp=drive_link', icon: 'fas fa-ship' }
+                    ],
+                    '2024': [...defaultServices]
+                }
             },
             'wira-qaila': {
                 name: 'KMP WIRA QAILA',
                 type: 'Ro-Ro Passenger Ship',
                 image: 'https://api.maritimeoptima.com/vesselpictures/1112719', 
-                certificates: [
-                    { category: 'CO2 System', cert: 'https://drive.google.com/file/d/1NT2JNj6Ev7FH3_7F0Pqh4rkalex87sK-/view?usp=sharing', doc: 'https://drive.google.com/drive/folders/1Bx0wF-u86eEeCKY7fx85kpsVQauvCe_V?usp=drive_link', icon: 'fas fa-wind' },
-                    { category: 'Fire Extinguisher (APAR)', cert: 'https://drive.google.com/file/d/1YdFQAKkOAmvs_6C03R6Cum_Zy6FiK-xW/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ewnRQEQVg-r5VVZmSb9limrt_-Ct3CdN?usp=drive_link', icon: 'fas fa-fire-extinguisher' },
-                    { 
-                        category: 'ILR', icon: 'fas fa-life-ring', isMultiItem: true,
-                        items: [
-                            { id: '706', cert: 'https://drive.google.com/file/d/1ggme27db7JRsg73vrWWov_41-0FoAr-E/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1_4inIuflN-10hw5FOO2RlkM4B7ceu6j2?usp=drive_link' },
+                history: {
+                    '2025': [
+                        { category: 'CO2 System', cert: 'https://drive.google.com/file/d/1NT2JNj6Ev7FH3_7F0Pqh4rkalex87sK-/view?usp=sharing', doc: 'https://drive.google.com/drive/folders/1Bx0wF-u86eEeCKY7fx85kpsVQauvCe_V?usp=drive_link', icon: 'fas fa-wind' },
+                        { category: 'Fire Extinguisher (APAR)', cert: 'https://drive.google.com/file/d/1YdFQAKkOAmvs_6C03R6Cum_Zy6FiK-xW/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ewnRQEQVg-r5VVZmSb9limrt_-Ct3CdN?usp=drive_link', icon: 'fas fa-fire-extinguisher' },
+                        { 
+                            category: 'ILR', icon: 'fas fa-life-ring', isMultiItem: true,
+                            items: [
+                                { id: '706', cert: 'https://drive.google.com/file/d/1ggme27db7JRsg73vrWWov_41-0FoAr-E/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1_4inIuflN-10hw5FOO2RlkM4B7ceu6j2?usp=drive_link' },
                             { id: '2139', cert: 'https://drive.google.com/file/d/1IRhUfvmq4eKUm5HwfLr5GZ5hj1dqVOs9/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1LoIAZinJ0Tb3LaUowPetV9J-xtRC5liW?usp=drive_link' },
                             { id: '2140', cert: 'https://drive.google.com/file/d/1TPqM-0RDRV19AUmy8b4d3Rp3C_2fu0AZ/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1coxC3kC_IxW9NdVt9RBz5fqki7XTG0JC?usp=drive_link' },
                             { id: '2141', cert: 'https://drive.google.com/file/d/1umxIpuAQRBOlNt4N5XuJ3Bc6VTbymyVJ/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1P6XA7arY1LyOwdP-XQBFa5Fiw1k8n3d0?usp=drive_link' },
@@ -295,15 +323,36 @@
                             { id: '2163', cert: 'https://drive.google.com/file/d/1RCqgLYNsumUG5HjJwTK1idxP_OJJ3R8h/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1yuA8kOG1gcQ7EyLDrWUrwN6NlvHpD7o8?usp=drive_link' },
                             { id: '2164', cert: 'https://drive.google.com/file/d/18S4H4EcHychCmgoDyzrQXD7QWMALhzfE/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1RQXNfyssCx2E7iJROFyo_iGCpzYl85yl?usp=drive_link' },
                             { id: '2501', cert: 'https://drive.google.com/file/d/1NxBMWmT_cacFg46A9BdGbtZXM4F46A9E/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1MMEtcyXh8L8IpasINhxXbmCDyQkSOgC2?usp=drive_link' }
-                        ] 
-                    },
-                    { category: 'Rescue Boat', cert: 'https://drive.google.com/file/d/1Bn0tWvR_T4lAVE3yCJCna6F9yaMiLAJ2/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1sLmlSS7rXhJ6-zUefOE4wDJhMm9w8bYK?usp=drive_link', icon: 'fas fa-ship' }
-                ]
+                            ] 
+                        },
+                        { category: 'Rescue Boat', cert: 'https://drive.google.com/file/d/1Bn0tWvR_T4lAVE3yCJCna6F9yaMiLAJ2/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1sLmlSS7rXhJ6-zUefOE4wDJhMm9w8bYK?usp=drive_link', icon: 'fas fa-ship' }
+                    ]
+                }
             },
-            'wira-berlian': { name: 'KMP WIRA BERLIAN', type: 'Ro-Ro Passenger Ship', image: 'https://www.wjl-line.com/assets/wira-berlian.webp', certificates: [...defaultServices] },
-            'wira-kencana': { name: 'KMP WIRA KENCANA', type: 'Ro-Ro Passenger Ship', image: 'https://i.ytimg.com/vi/DZMpXITHHQ/maxresdefault.jpg', certificates: [...defaultServices] },
-            'wira-mutiara': { name: 'KMP WIRA MUTIARA', type: 'Ro-Ro Passenger Ship', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStxRAcUoijS-FOO4Po6w-idVItTe6KnDqAmg&s', certificates: [...defaultServices] },
-            'wira-artha': { name: 'KMP WIRA ARTHA', type: 'Ro-Ro Passenger Ship', image: 'https://api.maritimeoptima.com/vesselpictures/9821275', certificates: [...defaultServices] }
+            'wira-berlian': { 
+                name: 'KMP WIRA BERLIAN', 
+                type: 'Ro-Ro Passenger Ship', 
+                image: 'https://www.wjl-line.com/assets/wira-berlian.webp', 
+                history: { '2025': [...defaultServices] }
+            },
+            'wira-kencana': { 
+                name: 'KMP WIRA KENCANA', 
+                type: 'Ro-Ro Passenger Ship', 
+                image: 'https://i.ytimg.com/vi/DZMpXITHHQ/maxresdefault.jpg', 
+                history: { '2025': [...defaultServices] } 
+            },
+            'wira-mutiara': { 
+                name: 'KMP WIRA MUTIARA', 
+                type: 'Ro-Ro Passenger Ship', 
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStxRAcUoijS-FOO4Po6w-idVItTe6KnDqAmg&s', 
+                history: { '2025': [...defaultServices] } 
+            },
+            'wira-artha': { 
+                name: 'KMP WIRA ARTHA', 
+                type: 'Ro-Ro Passenger Ship', 
+                image: 'https://api.maritimeoptima.com/vesselpictures/9821275', 
+                history: { '2025': [...defaultServices] } 
+            }
         };
 
         function init() {
@@ -316,27 +365,48 @@
             });
         }
 
-        function updateShipPortal() {
+        function handleShipChange() {
             const shipId = document.getElementById('shipSelector').value;
+            const yearContainer = document.getElementById('yearContainer');
+            const yearSelector = document.getElementById('yearSelector');
             const portal = document.getElementById('portalDisplay');
             const emptyState = document.getElementById('emptyState');
-            const grid = document.getElementById('certificateGrid');
 
             if (!shipId) {
+                yearContainer.classList.add('opacity-40', 'pointer-events-none');
                 portal.classList.add('hidden');
                 emptyState.classList.remove('hidden');
                 return;
             }
 
-            const data = fleetData[shipId];
+            // Populate Years
+            const years = Object.keys(fleetData[shipId].history).sort((a, b) => b - a);
+            yearSelector.innerHTML = years.map(yr => `<option value="${yr}">Tahun Service ${yr}</option>`).join('');
+            
+            yearContainer.classList.remove('opacity-40', 'pointer-events-none');
+            updateShipPortal(); 
+        }
+
+        function updateShipPortal() {
+            const shipId = document.getElementById('shipSelector').value;
+            const year = document.getElementById('yearSelector').value;
+            const portal = document.getElementById('portalDisplay');
+            const emptyState = document.getElementById('emptyState');
+            const grid = document.getElementById('certificateGrid');
+
+            if (!shipId || !year) return;
+
+            const shipData = fleetData[shipId];
+            const records = shipData.history[year];
+
             grid.innerHTML = '';
             
-            data.certificates.forEach((item, index) => {
+            records.forEach((item, index) => {
                 let cardHTML = '';
                 if (item.isMultiItem) {
-                    const options = item.items.map(it => `<option value="${it.id}" data-cert="${it.cert || '#'}" data-doc="${it.doc || '#'}">Unit ID: ${it.id}</option>`).join('');
+                    const options = item.items.map(it => `<option value="${it.id}" data-cert="${it.cert || '#'}" data-doc="${it.doc || '#'}">ID: ${it.id}</option>`).join('');
                     cardHTML = `
-                        <div class="service-card rounded-2xl p-6 border-blue-100">
+                        <div class="service-card rounded-2xl p-6 border-blue-50">
                             <div class="flex items-center gap-4 mb-4">
                                 <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-primary-blue border border-blue-50 text-lg">
                                     <i class="${item.icon}"></i>
@@ -348,8 +418,8 @@
                             </div>
                             <select onchange="changeMultiItem(this, ${index})" class="item-dropdown">${options}</select>
                             <div class="grid grid-cols-2 gap-3 mt-auto">
-                                <a id="cert-link-${index}" href="${item.items[0].cert || '#'}" target="_blank" class="btn-action bg-blue-600 text-white shadow-md shadow-blue-100 ${!item.items[0].cert ? 'opacity-50 pointer-events-none' : ''}"><i class="fas fa-file-pdf"></i> SERTIFIKAT</a>
-                                <a id="doc-link-${index}" href="${item.items[0].doc || '#'}" target="_blank" class="btn-action bg-amber-500 text-white shadow-md shadow-amber-100"><i class="fas fa-camera"></i> DOKUMEN</a>
+                                <a id="cert-link-${index}" href="${item.items[0].cert || '#'}" target="_blank" class="btn-action bg-blue-600 text-white shadow-md shadow-blue-100 ${(!item.items[0].cert || item.items[0].cert === '#') ? 'opacity-50 pointer-events-none' : ''}"><i class="fas fa-file-pdf"></i> SERTIFIKAT</a>
+                                <a id="doc-link-${index}" href="${item.items[0].doc || '#'}" target="_blank" class="btn-action bg-amber-500 text-white shadow-md shadow-amber-100 ${(!item.items[0].doc || item.items[0].doc === '#') ? 'opacity-50 pointer-events-none' : ''}"><i class="fas fa-camera"></i> DOKUMEN</a>
                             </div>
                         </div>
                     `;
@@ -372,9 +442,10 @@
                 grid.insertAdjacentHTML('beforeend', cardHTML);
             });
 
-            document.getElementById('shipNameDisplay').innerText = data.name;
-            document.getElementById('shipType').innerText = data.type;
-            document.getElementById('shipImage').src = data.image;
+            document.getElementById('shipNameDisplay').innerText = shipData.name;
+            document.getElementById('shipType').innerText = shipData.type;
+            document.getElementById('shipImage').src = shipData.image;
+            document.getElementById('displayYear').innerText = `Tahun Service ${year}`;
 
             emptyState.classList.add('hidden');
             portal.classList.remove('hidden');
@@ -397,6 +468,8 @@
 
             certLink.classList.toggle('opacity-50', certUrl === '#');
             certLink.classList.toggle('pointer-events-none', certUrl === '#');
+            docLink.classList.toggle('opacity-50', docUrl === '#');
+            docLink.classList.toggle('pointer-events-none', docUrl === '#');
         }
 
         window.onload = init;
