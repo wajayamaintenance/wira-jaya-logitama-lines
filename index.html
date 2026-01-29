@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Hub - PT Wira Jaya Logitama Lines</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        
+        :root {
+            --primary-blue: #002B5B;
+            --secondary-blue: #1A5F7A;
+            --accent-gold: #C0A150;
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bg-primary { background-color: var(--primary-blue); }
+        .text-accent { color: var(--accent-gold); }
+        
+        .hero-section {
+            position: relative;
+            background-color: var(--primary-blue);
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Menggunakan gambar baru dengan opasitas 50% */
+            background-image: linear-gradient(rgba(0, 43, 91, 0.5), rgba(0, 43, 91, 0.6)), 
+                              url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdxWkb0aZ86dTSM4H68PBQD9Lw92KESI6g6w&s');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 60px 0;
+        }
+        
+        .transition-smooth { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        .select-custom {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23002B5B' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            appearance: none;
+        }
+
+        .service-card {
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            min-height: 220px;
+        }
+        
+        .service-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-action {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 12px 6px;
+            border-radius: 10px;
+            transition: all 0.2s;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .item-dropdown {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #f1f5f9;
+            background-color: #f8fafc;
+            width: 100%;
+            margin-bottom: 15px;
+            cursor: pointer;
+            outline: none;
+            color: var(--primary-blue);
+        }
+
+        .logo-img {
+            max-height: 45px; 
+            width: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-gray-900">
+
+    <!-- Header / Navbar -->
+    <nav class="bg-primary text-white p-4 sticky top-0 z-50 shadow-xl border-b border-white/10">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="flex items-center gap-4">
+                <div class="bg-white p-2 rounded-xl shadow-md">
+                    <img src="LogoWajaya.png" alt="Logo Koperasi Wajaya" class="logo-img" onerror="this.src='https://ui-avatars.com/api/?name=WJL&background=002B5B&color=fff&bold=true'">
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl md:text-2xl block leading-tight text-accent">KOPERASI WAHANA JALA REKADAYA</span>
+                    <span class="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.2em] text-blue-200 opacity-80">Kota Jakarta Barat, DKI Jakarta</span>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <a href="https://www.wjl-line.com" target="_blank" class="text-xs font-bold px-4 py-2 border border-white/20 rounded-lg hover:bg-white/10 transition-all">
+                    <i class="fas fa-globe mr-2"></i>Official Website PT Wira Jaya Logitama Lines 
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-content flex items-center justify-center text-center text-white px-4">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-2 px-5 py-2 bg-accent-gold/20 border border-accent/40 text-accent rounded-full text-xs font-black mb-8 uppercase tracking-widest shadow-lg backdrop-blur-md">
+                    <span class="flex h-2 w-2 rounded-full bg-accent-gold animate-ping"></span>
+                    Maintenance Record Portal
+                </div>
+                <div>
+                    <span class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tighter drop-shadow-xl">PT Wira Jaya Logitama Lines</span>
+                </div>
+                <br>
+                <h1 class="font-extrabold text-xl md:text-2xl block leading-tight text-accent">Fleet Maintenance & Certification</h1>
+                <p class="text-blue-50 text-base md:text-lg max-w-2xl mx-auto opacity-95 leading-relaxed font-medium">
+                    Akses digital terpusat untuk sertifikasi sistem keselamatan dan dokumentasi teknis armada PT Wira Jaya Logitama Lines.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-12 container mx-auto px-4 -mt-20 relative z-10">
+        <div class="max-w-6xl mx-auto bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 border border-gray-100">
+            
+            <!-- Filter Section -->
+            <div class="mb-12 border-b border-gray-100 pb-12">
+                <div class="max-w-md mx-auto text-center">
+                    <label class="block text-primary-blue font-extrabold uppercase tracking-widest text-[10px] mb-4">Pilih Armada Kapal WJL</label>
+                    <select id="shipSelector" onchange="updateShipPortal()" class="select-custom w-full p-4 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-primary-blue transition-all font-bold text-primary-blue text-md">
+                        <option value="">-- Pilih Nama Kapal --</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Portal Display -->
+            <div id="portalDisplay" class="hidden transition-smooth opacity-0 translate-y-8">
+                <div class="grid lg:grid-cols-4 gap-10">
+                    <!-- Ship Profile -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-gray-50 rounded-[2rem] overflow-hidden border border-gray-100 sticky top-28">
+                            <div class="aspect-video bg-gray-200 overflow-hidden">
+                                <img id="shipImage" src="" alt="Kapal" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6 text-center">
+                                <p id="shipType" class="text-accent text-[9px] font-black uppercase tracking-[0.2em] mb-1">Tipe Kapal</p>
+                                <h3 id="shipNameDisplay" class="text-xl font-extrabold text-primary-blue uppercase leading-tight mb-4">Nama Kapal</h3>
+                                
+                                <div class="pt-4 border-t border-gray-200">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-green-50 text-green-600 text-[10px] font-bold">
+                                        <i class="fas fa-check-circle mr-1"></i> DATA TERVERIFIKASI
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Records Grid -->
+                    <div class="lg:col-span-3">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                            <h4 class="text-xs font-black text-primary-blue uppercase tracking-widest flex items-center gap-2">
+                                <i class="fas fa-clipboard-check text-accent text-lg"></i> Maintenance Documents
+                            </h4>
+                        </div>
+                        <div id="certificateGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="text-center py-20 transition-smooth">
+                <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-anchor text-3xl text-blue-200"></i>
+                </div>
+                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest">Silakan pilih armada kapal untuk melihat laporan</h3>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white border-t border-gray-100 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <p class="font-black text-primary-blue text-[10px] uppercase tracking-[0.4em] mb-2">KOPERASI WAHANA JALA REKADAYA &copy; 2025</p>
+            <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Wajaya Corp</p>
+        </div>
+    </footer>
+
+    <script>
+        const defaultServices = [
+            { category: 'CO2 System', cert: '#', doc: '#', icon: 'fas fa-wind' },
+            { category: 'EEBD', cert: '#', doc: '#', icon: 'fas fa-mask' },
+            { category: 'APAR', cert: '#', doc: '#', icon: 'fas fa-fire-extinguisher' },
+            { category: 'HRU', cert: '#', doc: '#', icon: 'fas fa-anchor' }
+        ];
+
+        const fleetData = {
+            'wira-samaeri': {
+                name: 'KMP WIRA SAMAERI',
+                type: 'Ro-Ro Passenger Ship',
+                image: 'https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/236/2024/05/21/kmp-wira-3385688903.jpg',
+                certificates: [
+                    { category: 'CO2 System', cert: 'https://drive.google.com/file/d/1TO30irOuo0Vn-ngoss4Li19m5yPqCjXc/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1JLkqSkXWsPh073m9-TBo5VjPIpHr2HGg?usp=drive_link', icon: 'fas fa-wind' },
+                    { category: 'EEBD', cert: 'https://drive.google.com/file/d/18O0nTGyl7Q0C2t3gyjuNLipiMG3II6aG/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1oY5Wf2nH_Lw2UhE8ICgRZKhZtgYjsnDT?usp=drive_link', icon: 'fas fa-mask' },
+                    { category: 'Fire Extinguisher (APAR)', cert: 'https://drive.google.com/file/d/10gJ_H0rLjkRi1K-tj4P7GpkGXkmHFNSq/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ZBvif2wmTz0hPtod2KDKR2RtAw1RGths?usp=drive_link', icon: 'fas fa-fire-extinguisher' },
+                    { category: 'HRU', cert: 'https://drive.google.com/file/d/1VXAODbaryKjLH9J03GCTejmDnXpiPIE-/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1241N1tw9l8h5DeUG5vs0YUNvcUU21qZ_?usp=drive_link', icon: 'fas fa-anchor' },
+                    { 
+                        category: 'ILR', icon: 'fas fa-life-ring', isMultiItem: true,
+                        items: [
+                            { id: '0692', cert: 'https://drive.google.com/file/d/1qaXOZ6q6vK6OIw82GeN3APpnSZ9yiDJn/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1xI3jgnQ-Ve1BzTdwhG3JlRSmQ447DD_L?usp=drive_link' },
+                            { id: '1167', cert: 'https://drive.google.com/file/d/1hyiCP00vT6vG7UHf_uQLhXZLgk-5tumr/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1xI3jgnQ-Ve1BzTdwhG3JlRSmQ447DD_L?usp=drive_link' },
+                            { id: '1168', cert: 'https://drive.google.com/file/d/1pQS4V3q9iV_4ai5YnuYtLMX1IktZP3z3/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1z_TCx_58CuISo-d9ZlIybguaBaZDmg5r?usp=drive_link' },
+                            { id: '04079', cert: 'https://drive.google.com/file/d/1E89GoNpfOwubIxofjF1_U5bb7d4Zx4z5/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/13HWEVFdTbbvZ-ASAXtRIC9k7xf9hGDtn?usp=drive_link' },
+                            { id: '04081', cert: 'https://drive.google.com/file/d/1T4jWgEl6wmpOV-R21YcSe_VeQrv6ZA70/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1HVyMdfTKx0NLAZZODM0MoZaxfIibtlH1?usp=drive_link' },
+                            { id: '04083', cert: 'https://drive.google.com/file/d/1KFGm6JYqHgwXknbk_OikdRYANzGb73dg/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1V02OJQE6Co_Jews4HoFosCGpWzHj9wdV?usp=drive_link' },
+                            { id: '04084', cert: 'https://drive.google.com/file/d/19sSmwT7h3fEWnT2GKQoj9xqw8RcjWU7R/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1VRqBoBjlqzqwIjVVnC6r0Q07DtOauesu?usp=drive_link' },
+                            { id: '04115', cert: 'https://drive.google.com/file/d/12RgVFmrs9ltG8UoZYUEXAgZdD3qp000H/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1YhVGmwYwgofeaWQ2Knlav4GNxcnLTfFv?usp=drive_link' },
+                            { id: 'Pemasangan Liferaft 1', doc: 'https://drive.google.com/drive/folders/16pY31SoKt-_J5H5H3TXn3NKEWQopcMFl?usp=drive_link' },
+                            { id: 'Pemasangan Liferaft 2', doc: 'https://drive.google.com/drive/folders/1rya6T2xc9lb7va-f662Nap7icorigA9U?usp=drive_link' }
+                        ] 
+                    },
+                    { category: 'Rescue Boat', cert: 'https://drive.google.com/file/d/1g7rfulhgJsxN6CKmd2EN0_9FLzElNcEt/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1O6j6VRDj1vc57zh4rH2bD_nye4HDv0l7?usp=drive_link', icon: 'fas fa-ship' }
+                ]
+            },
+            'wira-qaila': {
+                name: 'KMP WIRA QAILA',
+                type: 'Ro-Ro Passenger Ship',
+                image: 'https://api.maritimeoptima.com/vesselpictures/1112719', 
+                certificates: [
+                    { category: 'CO2 System', cert: 'https://drive.google.com/file/d/1NT2JNj6Ev7FH3_7F0Pqh4rkalex87sK-/view?usp=sharing', doc: 'https://drive.google.com/drive/folders/1Bx0wF-u86eEeCKY7fx85kpsVQauvCe_V?usp=drive_link', icon: 'fas fa-wind' },
+                    { category: 'Fire Extinguisher (APAR)', cert: 'https://drive.google.com/file/d/1YdFQAKkOAmvs_6C03R6Cum_Zy6FiK-xW/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ewnRQEQVg-r5VVZmSb9limrt_-Ct3CdN?usp=drive_link', icon: 'fas fa-fire-extinguisher' },
+                    { 
+                        category: 'ILR', icon: 'fas fa-life-ring', isMultiItem: true,
+                        items: [
+                            { id: '706', cert: 'https://drive.google.com/file/d/1ggme27db7JRsg73vrWWov_41-0FoAr-E/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1_4inIuflN-10hw5FOO2RlkM4B7ceu6j2?usp=drive_link' },
+                            { id: '2139', cert: 'https://drive.google.com/file/d/1IRhUfvmq4eKUm5HwfLr5GZ5hj1dqVOs9/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1LoIAZinJ0Tb3LaUowPetV9J-xtRC5liW?usp=drive_link' },
+                            { id: '2140', cert: 'https://drive.google.com/file/d/1TPqM-0RDRV19AUmy8b4d3Rp3C_2fu0AZ/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1coxC3kC_IxW9NdVt9RBz5fqki7XTG0JC?usp=drive_link' },
+                            { id: '2141', cert: 'https://drive.google.com/file/d/1umxIpuAQRBOlNt4N5XuJ3Bc6VTbymyVJ/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1P6XA7arY1LyOwdP-XQBFa5Fiw1k8n3d0?usp=drive_link' },
+                            { id: '2142', cert: 'https://drive.google.com/file/d/1_mRbPl4x9tXwBbmLBzmUpfFbYDxYG56i/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1DFF4rg6sD8GEeVnWPzY-DcKIroJZRjBk?usp=drive_link' },
+                            { id: '2143', cert: 'https://drive.google.com/file/d/1n4hxaBDK5hZsu-2r3GGJzUVhWsgzDTfK/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1E8EhA0CPYoNtOK6z0Vj9OrjYka8Q18mS?usp=drive_link' },
+                            { id: '2144', cert: 'https://drive.google.com/file/d/1mJM7afjbg6u7_JLtBTQrG_LkmBvV29s7/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1LoiZTbBIpBrll1A9FeSFNXtEojQkQ80e?usp=drive_link' },
+                            { id: '2145', cert: 'https://drive.google.com/file/d/1GZQG6O8KiURRac2WE5w6D7VeeT8LQ9Fq/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1YuINhorlD4j9GJ9yJLYaaMPKVIDPyKFn?usp=drive_link' },
+                            { id: '2146', cert: 'https://drive.google.com/file/d/10RinK5vJa5gxGmmqlBA3OhOROSoGG12x/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ZnxIfOdZssh4M2_QvU5ljkLFrUNIaZhi?usp=drive_link' },
+                            { id: '2147', cert: 'https://drive.google.com/file/d/1s4i6FDTAQdO0Qd9sGkF_roSMDXDQFS7o/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1xjQLepxzo3xXWg8kt5LoWhwnyQxLuAjE?usp=drive_link' },
+                            { id: '2148', cert: 'https://drive.google.com/file/d/1V9R3LBB9pA5tVOeIIn-lsv74NVMSlN8r/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1ddvW7LLLOTN2pCbZqlYbwNqKKpN7sijq?usp=drive_link' },
+                            { id: '2149', cert: 'https://drive.google.com/file/d/1MqMHf8WQ4j9U7zMjxpg84XiXd2UO1hz4/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1grKRNP5OcCQJamtSJ4i1U5IljUnxwDcK?usp=drive_link' },
+                            { id: '2150', cert: 'https://drive.google.com/file/d/167Nh7hyty1zwQ2xMvHae7-QFKgGTyDfT/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1WrwqzvLFGWaGZHu0tI5z4gekgzzn9HGr?usp=drive_link' },
+                            { id: '2151', cert: 'https://drive.google.com/file/d/1w_GyGG5d5q7YzntRb8dM1Ma1xQdr32X6/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/11jE_zeTjeuwm8uE3bB8Gc9agXqyUosVO?usp=drive_link' },
+                            { id: '2152', cert: 'https://drive.google.com/file/d/1euooTjhO8-d6wO8lvjkOJ93ib5ib6cTT/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1bqSa4qwmfNPt7TFNR-L8mmcyeo5A8hFC?usp=drive_link' },
+                            { id: '2153', cert: 'https://drive.google.com/file/d/1OPKmUoQk7NQzwPIT6aKscR00F1IfY7ri/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1TF3foZT7PEg5_PJu0U5p-N-m3nhJajb3?usp=drive_link' },
+                            { id: '2154', cert: 'https://drive.google.com/file/d/1TXLOWlYql__aVtW042QoysPAdewSfCLq/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1m6nyN7G7gtW9bxKoaGaRrHlYdejY7tiy?usp=drive_link' },
+                            { id: '2155', cert: 'https://drive.google.com/file/d/1rJLKAfTm24V9hWjjwSxgtbVGivtdZa2P/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/17cU9A4r_VrVfVopN9OIWpKjs2bSquaXR?usp=drive_link' },
+                            { id: '2156', cert: 'https://drive.google.com/file/d/1VWxZxlRhhjNkJfrMjEA-4DCwE787pQU_/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1w7AYVywP_jcRetaOhB-G3N1tHCUw8Y_p?usp=drive_link' },
+                            { id: '2157', cert: 'https://drive.google.com/file/d/13JmOzkwYmCSX3mm4pH634ir_AwCUgjPI/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1gRiVG96jSWo6UV6HyCNNsJQplQA3dRee?usp=drive_link' },
+                            { id: '2158', cert: 'https://drive.google.com/file/d/17PnLi2XG7lfjGpxGI9uAsY-WXTai7ifP/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1851P8PNmyp39Oo3-3Mp9ZdxZM1nDLFJK?usp=drive_link' },
+                            { id: '2159', cert: 'https://drive.google.com/file/d/1UGg3qZND6qc339HijbrC7MP6Se_xUnFi/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1mTTz2w6HnA1f04Fyj3dZ9DqRIPqhV6Ry?usp=drive_link' },
+                            { id: '2160', cert: 'https://drive.google.com/file/d/1NZxpt78U7fDqCSAEmPK3COjn-ENNVuFG/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1IfcjCfvsBqUNiwlR4eXnGQTIENcL4VUx?usp=drive_link' },
+                            { id: '2161', cert: 'https://drive.google.com/file/d/1N1dCnB58M1nMJDjy6mrjIG6H9shirLNo/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1FxBsy-e7baBjmuTsM2Xfg-e7gRhOhvmI?usp=drive_link' },
+                            { id: '2162', cert: 'https://drive.google.com/file/d/1C3be6Y83RR23jItsbIXKyDh4ICJJ9K4s/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1PMCQe1JrRnRbooBczRfunCBNzYn5nIqO?usp=drive_link' },
+                            { id: '2163', cert: 'https://drive.google.com/file/d/1RCqgLYNsumUG5HjJwTK1idxP_OJJ3R8h/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1yuA8kOG1gcQ7EyLDrWUrwN6NlvHpD7o8?usp=drive_link' },
+                            { id: '2164', cert: 'https://drive.google.com/file/d/18S4H4EcHychCmgoDyzrQXD7QWMALhzfE/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1RQXNfyssCx2E7iJROFyo_iGCpzYl85yl?usp=drive_link' },
+                            { id: '2501', cert: 'https://drive.google.com/file/d/1NxBMWmT_cacFg46A9BdGbtZXM4F46A9E/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1MMEtcyXh8L8IpasINhxXbmCDyQkSOgC2?usp=drive_link' }
+                        ] 
+                    },
+                    { category: 'Rescue Boat', cert: 'https://drive.google.com/file/d/1Bn0tWvR_T4lAVE3yCJCna6F9yaMiLAJ2/view?usp=drive_link', doc: 'https://drive.google.com/drive/folders/1sLmlSS7rXhJ6-zUefOE4wDJhMm9w8bYK?usp=drive_link', icon: 'fas fa-ship' }
+                ]
+            },
+            'wira-berlian': { name: 'KMP WIRA BERLIAN', type: 'Ro-Ro Passenger Ship', image: 'https://www.wjl-line.com/assets/wira-berlian.webp', certificates: [...defaultServices] },
+            'wira-kencana': { name: 'KMP WIRA KENCANA', type: 'Ro-Ro Passenger Ship', image: 'https://i.ytimg.com/vi/DZMpXITHHQ/maxresdefault.jpg', certificates: [...defaultServices] },
+            'wira-mutiara': { name: 'KMP WIRA MUTIARA', type: 'Ro-Ro Passenger Ship', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStxRAcUoijS-FOO4Po6w-idVItTe6KnDqAmg&s', certificates: [...defaultServices] },
+            'wira-artha': { name: 'KMP WIRA ARTHA', type: 'Ro-Ro Passenger Ship', image: 'https://api.maritimeoptima.com/vesselpictures/9821275', certificates: [...defaultServices] }
+        };
+
+        function init() {
+            const selector = document.getElementById('shipSelector');
+            Object.keys(fleetData).sort((a,b) => fleetData[a].name.localeCompare(fleetData[b].name)).forEach(key => {
+                let option = document.createElement('option');
+                option.value = key;
+                option.text = fleetData[key].name;
+                selector.appendChild(option);
+            });
+        }
+
+        function updateShipPortal() {
+            const shipId = document.getElementById('shipSelector').value;
+            const portal = document.getElementById('portalDisplay');
+            const emptyState = document.getElementById('emptyState');
+            const grid = document.getElementById('certificateGrid');
+
+            if (!shipId) {
+                portal.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            const data = fleetData[shipId];
+            grid.innerHTML = '';
+            
+            data.certificates.forEach((item, index) => {
+                let cardHTML = '';
+                if (item.isMultiItem) {
+                    const options = item.items.map(it => `<option value="${it.id}" data-cert="${it.cert || '#'}" data-doc="${it.doc || '#'}">Unit ID: ${it.id}</option>`).join('');
+                    cardHTML = `
+                        <div class="service-card rounded-2xl p-6 border-blue-100">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-primary-blue border border-blue-50 text-lg">
+                                    <i class="${item.icon}"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-[10px] font-black text-primary-blue uppercase tracking-wider">${item.category}</h5>
+                                    <span class="text-[8px] font-bold text-accent px-1.5 py-0.5 bg-accent/10 rounded uppercase">Multiple Unit</span>
+                                </div>
+                            </div>
+                            <select onchange="changeMultiItem(this, ${index})" class="item-dropdown">${options}</select>
+                            <div class="grid grid-cols-2 gap-3 mt-auto">
+                                <a id="cert-link-${index}" href="${item.items[0].cert || '#'}" target="_blank" class="btn-action bg-blue-600 text-white shadow-md shadow-blue-100 ${!item.items[0].cert ? 'opacity-50 pointer-events-none' : ''}"><i class="fas fa-file-pdf"></i> SERTIFIKAT</a>
+                                <a id="doc-link-${index}" href="${item.items[0].doc || '#'}" target="_blank" class="btn-action bg-amber-500 text-white shadow-md shadow-amber-100"><i class="fas fa-camera"></i> DOKUMEN</a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    cardHTML = `
+                        <div class="service-card rounded-2xl p-6">
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-primary-blue border border-gray-100 text-lg">
+                                    <i class="${item.icon}"></i>
+                                </div>
+                                <h5 class="text-[10px] font-black text-primary-blue uppercase tracking-wider">${item.category}</h5>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 mt-auto">
+                                <a href="${item.cert}" target="_blank" class="btn-action bg-blue-600 text-white shadow-md shadow-blue-100 ${item.cert === '#' ? 'opacity-50 pointer-events-none' : ''}"><i class="fas fa-file-pdf"></i> SERTIFIKAT</a>
+                                <a href="${item.doc}" target="_blank" class="btn-action bg-amber-500 text-white shadow-md shadow-amber-100 ${item.doc === '#' ? 'opacity-50 pointer-events-none' : ''}"><i class="fas fa-camera"></i> DOKUMEN</a>
+                            </div>
+                        </div>
+                    `;
+                }
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+
+            document.getElementById('shipNameDisplay').innerText = data.name;
+            document.getElementById('shipType').innerText = data.type;
+            document.getElementById('shipImage').src = data.image;
+
+            emptyState.classList.add('hidden');
+            portal.classList.remove('hidden');
+            setTimeout(() => {
+                portal.classList.remove('opacity-0', 'translate-y-8');
+                portal.classList.add('opacity-100', 'translate-y-0');
+            }, 50);
+        }
+
+        function changeMultiItem(selectElement, index) {
+            const opt = selectElement.options[selectElement.selectedIndex];
+            const certLink = document.getElementById(`cert-link-${index}`);
+            const docLink = document.getElementById(`doc-link-${index}`);
+            
+            const certUrl = opt.getAttribute('data-cert');
+            const docUrl = opt.getAttribute('data-doc');
+
+            certLink.href = certUrl;
+            docLink.href = docUrl;
+
+            certLink.classList.toggle('opacity-50', certUrl === '#');
+            certLink.classList.toggle('pointer-events-none', certUrl === '#');
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
