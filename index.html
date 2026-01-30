@@ -114,6 +114,16 @@
         .controls-container {
             margin-top: -120px; /* Menarik container ke atas area hero */
         }
+
+        /* Penyesuaian khusus untuk teks menu maintenance */
+        .maintenance-title {
+            font-size: 16px; /* Ukuran diperbesar */
+            font-weight: 800;
+            color: #800000; /* Warna Merah Maroon */
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            line-height: 1.2;
+        }
     </style>
 </head>
 <body class="bg-[#F8FAFC] text-gray-900">
@@ -412,7 +422,7 @@
                                     <i class="${item.icon}"></i>
                                 </div>
                                 <div>
-                                    <h5 class="text-[10px] font-black text-primary-blue uppercase tracking-wider">${item.category}</h5>
+                                    <h5 class="maintenance-title">${item.category}</h5>
                                     <span class="text-[8px] font-bold text-accent px-1.5 py-0.5 bg-accent/10 rounded uppercase">Multiple Unit</span>
                                 </div>
                             </div>
@@ -430,7 +440,7 @@
                                 <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-primary-blue border border-gray-100 text-lg">
                                     <i class="${item.icon}"></i>
                                 </div>
-                                <h5 class="text-[10px] font-black text-primary-blue uppercase tracking-wider">${item.category}</h5>
+                                <h5 class="maintenance-title">${item.category}</h5>
                             </div>
                             <div class="grid grid-cols-2 gap-3 mt-auto">
                                 <a href="${item.cert}" target="_blank" class="btn-action bg-blue-600 text-white shadow-md shadow-blue-100 ${item.cert === '#' ? 'opacity-50 pointer-events-none' : ''}"><i class="fas fa-file-pdf"></i> SERTIFIKAT</a>
@@ -476,3 +486,4 @@
     </script>
 </body>
 </html>
+
